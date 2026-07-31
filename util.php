@@ -21,10 +21,10 @@ function get_server_cpu_usage(){
 
 #echo "CPU: " . floor(get_server_cpu_usage());
 #echo file_get_contents("util");
-shell_exec(<<<EOD
-echo "CPU Usage: "$[100-$(vmstat 1 2|tail -1|awk '{print $15}')]"%" > ./util.txt
-EOD);
-echo file_get_contents("./util.txt");
+#shell_exec(<<<EOD
+#echo "CPU Usage: "$[100-$(vmstat 1 2|tail -1|awk '{print $15}')]"%" > ./util.txt
+#EOD);
+#echo file_get_contents("./util.txt");
 echo "RAM: " . floor(get_server_memory_usage()) . "%";
 
 ?>
