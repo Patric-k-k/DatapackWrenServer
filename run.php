@@ -14,8 +14,8 @@ foreach ($data["pages"] as $page) {
 
 file_put_contents("./script.wren",$script);
 
-echo shell_exec("bash ./limit.sh compile gcc ./main.c -lwren -Iinclude -o ./test");
-echo shell_exec("bash ./limit.sh run ./test > output.txt");
+echo shell_exec("gcc ./main.c -lwren -Iinclude -o ./test");
+echo shell_exec("./test > output.txt");
 
 echo file_get_contents("./output.txt");
 ?>
