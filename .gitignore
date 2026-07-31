@@ -7,3 +7,5 @@ script.cpp
 outputc.txt
 outputcpp.txt
 util.txt
+script.luau
+outputluau.txt
