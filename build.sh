@@ -4,7 +4,8 @@ cp $1 "/run/media/pk/External HD1/Enviedistil_buildareas/workspace/in.cpp"
 
 touch "/run/media/pk/External HD1/Enviedistil_buildareas/workspace/outp"
 
-/usr/bin/bwrap \
+bash ./limit.sh compile /usr/bin/bwrap \
+  --die-with-parent \
   --ro-bind /usr /usr \
   --ro-bind /bin /bin \
   --ro-bind /lib /lib \
@@ -15,5 +16,5 @@ touch "/run/media/pk/External HD1/Enviedistil_buildareas/workspace/outp"
   --ro-bind "/run/media/pk/External HD1/Enviedistil_buildareas/workspace" /workspace \
   --bind "/run/media/pk/External HD1/Enviedistil_buildareas/workspace/outp" /workspace/outp \
   --unshare-all \
-  /usr/bin/g++ /workspace/in.cpp -o /workspace/outp
+  /usr/bin/g++ /workspace/in.cpp -o /workspace/outp || exit $?
 cp "/run/media/pk/External HD1/Enviedistil_buildareas/workspace/outp" $2
