@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "include/wren.h"
+#include <string.h>
 
 static void writeFn(WrenVM* vm, const char* text)
 {
@@ -14,21 +15,44 @@ void errorFn(WrenVM* vm, WrenErrorType errorType,
   {
     case WREN_ERROR_COMPILE:
     {
-      printf("[%s line %d] [Error] %s\n", module, line, msg);
+      printf("\033[91m[%s line %d] [Error] %s\033[0m\n", module, line, msg);
     } break;
     case WREN_ERROR_STACK_TRACE:
     {
-      printf("[%s line %d] in %s\n", module, line, msg);
+      printf("\033[91m[%s line %d] in %s\033[0m\n", module, line, msg);
     } break;
     case WREN_ERROR_RUNTIME:
     {
-      printf("[Runtime Error] %s\n", msg);
+      printf("\033[91m[Runtime Error] %s\033[0m\n", msg);
     } break;
   }
 }
 
 int main()
 {
+  char script[4096] = "";
+  char line[256];
+  char buffer[1024];
+
+  FILE *fp = fopen("script.wren", "r");
+
+  if (fp == NULL) {
+    printf("Unable to open file.");
+    return 1;
+  }
+
+  while (fgets(buffer, sizeof(buffer), fp)) {
+    strcpy(line,buffer);
+    strcat(script,line);
+  }
+  //line = buffer;
+
+  //printf("Script:\033[96m\n\n");
+  //printf(script);
+  //printf("\n\n\033[0mOutput:\n\n");
+  fclose(fp);
+
+  const char* module = "main";
 
   WrenConfiguration config;
   wrenInitConfiguration(&config);
@@ -36,19 +60,7 @@ int main()
     config.errorFn = &errorFn;
   WrenVM* vm = wrenNewVM(&config);
 
-  const char* module = "main";
-  const char* script = "System.print(\"I am running in a VM!\")";
-
   WrenInterpretResult result = wrenInterpret(vm, module, script);
-
-  switch (result) {
-    case WREN_RESULT_COMPILE_ERROR:
-      { printf("Compile Error!\n"); } break;
-    case WREN_RESULT_RUNTIME_ERROR:
-      { printf("Runtime Error!\n"); } break;
-    case WREN_RESULT_SUCCESS:
-      { printf("Success!\n"); } break;
-  }
 
   wrenFreeVM(vm);
 
