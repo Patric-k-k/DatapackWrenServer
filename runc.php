@@ -16,7 +16,5 @@ file_put_contents("./script.c",$script);
 
 echo shell_exec("bash ./runc.sh > ./outputc.txt");
 
-sleep(2);
-
 echo file_get_contents("./outputc.txt");
 ?>

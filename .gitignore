@@ -4,3 +4,5 @@ script.wren
 script.c
 .gitignore
 script.cpp
+outputc.txt
+outputcpp.txt
