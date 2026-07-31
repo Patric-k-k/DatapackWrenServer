@@ -15,15 +15,15 @@ void errorFn(WrenVM* vm, WrenErrorType errorType,
   {
     case WREN_ERROR_COMPILE:
     {
-      printf("\",{text:\"\033[91m[%s line %d] [Error] %s\033[0m\n\",color:red},\"", module, line, msg);
+      printf("\",{text:\"[%s line %d] [Error] %s\n\",color:red},\"", module, line, msg);
     } break;
     case WREN_ERROR_STACK_TRACE:
     {
-      printf("\",{text:\"\033[91m[%s line %d] in %s\033[0m\n\",color:red},\"", module, line, msg);
+      printf("\",{text:\"[%s line %d] in %s\n\",color:red},\"", module, line, msg);
     } break;
     case WREN_ERROR_RUNTIME:
     {
-      printf("\",{text:\"\033[91m[Runtime Error] %s\033[0m\n\",color:red},\"", msg);
+      printf("\",{text:\"[Runtime Error] %s\n\",color:red},\"", msg);
     } break;
   }
 }

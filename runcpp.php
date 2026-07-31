@@ -14,7 +14,7 @@ foreach ($data["pages"] as $page) {
 
 file_put_contents("./script.cpp",$script);
 
-echo shell_exec("bash ./run.sh > outputcpp.txt");
+popen("bash ./run.sh > outputcpp.txt","r");
 
 echo file_get_contents("./outputcpp.txt");
 ?>
