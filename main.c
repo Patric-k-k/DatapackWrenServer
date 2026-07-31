@@ -15,15 +15,15 @@ void errorFn(WrenVM* vm, WrenErrorType errorType,
   {
     case WREN_ERROR_COMPILE:
     {
-      printf("\033[91m[%s line %d] [Error] %s\033[0m\n", module, line, msg);
+      printf("\",{text:\"\033[91m[%s line %d] [Error] %s\033[0m\n\",color:red},\"", module, line, msg);
     } break;
     case WREN_ERROR_STACK_TRACE:
     {
-      printf("\033[91m[%s line %d] in %s\033[0m\n", module, line, msg);
+      printf("\",{text:\"\033[91m[%s line %d] in %s\033[0m\n\",color:red},\"", module, line, msg);
     } break;
     case WREN_ERROR_RUNTIME:
     {
-      printf("\033[91m[Runtime Error] %s\033[0m\n", msg);
+      printf("\",{text:\"\033[91m[Runtime Error] %s\033[0m\n\",color:red},\"", msg);
     } break;
   }
 }
@@ -50,8 +50,8 @@ int main()
   //printf("Script:\033[96m\n\n");
   //printf(script);
   //printf("\n\n\033[0mOutput:\n\n");
+  printf("[\"");
   fclose(fp);
-
   const char* module = "main";
 
   WrenConfiguration config;
@@ -64,4 +64,5 @@ int main()
 
   wrenFreeVM(vm);
 
+  printf("\"]");
 }

@@ -1,3 +1,6 @@
 output.txt
 test
 script.wren
+script.c
+.gitignore
+script.cpp

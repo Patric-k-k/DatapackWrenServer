@@ -12,10 +12,9 @@ foreach ($data["pages"] as $page) {
     $script = $script . $page["raw"] . "\n";
 }
 
-file_put_contents("./script.wren",$script);
+file_put_contents("./script.cpp",$script);
 
-echo shell_exec("gcc ./main.c -lwren -Iinclude -o ./test");
-echo shell_exec("./test > output.txt");
+echo shell_exec("bash ./run.sh > output.txt");
 
 echo file_get_contents("./output.txt");
 ?>

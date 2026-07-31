@@ -11,5 +11,12 @@ this is a <span class="text-green-500">horrible idea</span>.
 </p>
 <p class="text-white text-center">Arbitrary Code Execution intended!<span class="text-red-500">*</span></p>
 <p class="text-red-500/25 text-center text-sm">*but not in a dangerous way</p>
+
+<br><br><br>
+<p class="text-white text-center">Last Ran Wren Code:</p>
+<p class="text-white"><?php echo htmlspecialchars(str_replace("\n","<br>",file_get_contents("./script.wren"))) ?></p>
+<br>
+<p class="text-white text-center">Wren Output:</p>
+<p class="text-white"><?php echo htmlspecialchars(file_get_contents("./output.txt")) ?></p>
 </body>
 </html>
