@@ -4,7 +4,7 @@ cp $1 "/run/media/pk/External HD1/Enviedistil_buildareas/workspace/in.c"
 
 touch "/run/media/pk/External HD1/Enviedistil_buildareas/workspace/out"
 
-bwrap \
+/usr/bin/bwrap \
   --ro-bind /usr /usr \
   --ro-bind /bin /bin \
   --ro-bind /lib /lib \
@@ -15,5 +15,5 @@ bwrap \
   --ro-bind "/run/media/pk/External HD1/Enviedistil_buildareas/workspace" /workspace \
   --bind "/run/media/pk/External HD1/Enviedistil_buildareas/workspace/out" /workspace/out \
   --unshare-all \
-  g++ /workspace/in.c -o /workspace/out
+  /usr/bin/gcc /workspace/in.c -o /workspace/out
 cp "/run/media/pk/External HD1/Enviedistil_buildareas/workspace/out" $2

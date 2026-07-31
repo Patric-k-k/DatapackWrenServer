@@ -1,12 +1,22 @@
 #!/bin/bash
-bash ./build.sh ./script.cpp /home/pk/Desktop/cppdatapacks/apps/local/app
+#run.sh
+export PATH=/home/pk/.cargo/bin:/home/pk/miniconda3/bin:/home/pk/miniconda3/condabin:/home/pk/.local/bin:/home/pk/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin
 
-bwrap \
+echo "---- run.sh ----" >> ./tmp/runlog.txt
+date >> ./tmp/runlog.txt
+pwd >> ./tmp/runlog.txt
+id >> ./tmp/runlog.txt
+whoami >> ./tmp/runlog.txt
+echo "PATH=$PATH" >> ./tmp/runlog.txt
+
+bash ./build.sh ./script.cpp /home/pk/Desktop/cppdatapacks/apps/local2/app
+
+/usr/bin/bwrap \
   --ro-bind /usr /usr \
   --ro-bind /lib /lib \
   --ro-bind /lib64 /lib64 \
   --bind /home/pk/Desktop/cppdatapacks/apps/global_sandbox /app_global \
-  --bind /home/pk/Desktop/cppdatapacks/apps/local /app_local \
+  --bind /home/pk/Desktop/cppdatapacks/apps/local2 /app_local \
   --chdir /app_local \
   --unshare-all \
   /app_local/app
