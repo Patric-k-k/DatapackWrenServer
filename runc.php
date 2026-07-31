@@ -14,9 +14,9 @@ foreach ($data["pages"] as $page) {
 
 file_put_contents("./script.c",$script);
 
-echo shell_exec("bash ./runc.sh > ./output.txt");
+echo shell_exec("bash ./runc.sh > ./outputc.txt");
 
 sleep(2);
 
-echo file_get_contents("./output.txt");
+echo file_get_contents("./outputc.txt");
 ?>

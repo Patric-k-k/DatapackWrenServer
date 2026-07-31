@@ -18,5 +18,17 @@ this is a <span class="text-green-500">horrible idea</span>.
 <br>
 <p class="text-white text-center">Wren Output:</p>
 <p class="text-white"><?php echo htmlspecialchars(file_get_contents("./output.txt")) ?></p>
+<br><br><br>
+<p class="text-white text-center">Last Ran C++ Code:</p>
+<p class="text-white"><?php echo htmlspecialchars(str_replace("\n","<br>",file_get_contents("./script.cpp"))) ?></p>
+<br>
+<p class="text-white text-center">C++ Output:</p>
+<p class="text-white"><?php echo htmlspecialchars(file_get_contents("./outputcpp.txt")) ?></p>
+<br><br><br>
+<p class="text-white text-center">Last Ran C Code:</p>
+<p class="text-white"><?php echo htmlspecialchars(str_replace("\n","<br>",file_get_contents("./script.c"))) ?></p>
+<br>
+<p class="text-white text-center">C Output:</p>
+<p class="text-white"><?php echo htmlspecialchars(file_get_contents("./outputc.txt")) ?></p>
 </body>
 </html>
